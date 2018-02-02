@@ -1,5 +1,17 @@
-<project name="devops" default="a">
-<target name="a">
-<mkdir dir="bangalore"/>
+<project name="java tasks" default="run">
+<target name="compile" description="compile the java files">
+<mkdir dir="build/classes"/>
+<javac srcdir="src" destdir="build/classes"/>
+</target>
+<target name="package" depends="compile" description="packaing the the file">
+<mkdir dir="build/jars"/>
+<jar destfile="build/jars/CallingMethodsInSameClass.java" basedir="build/classes">
+<manifest>
+<attribute name="main-class" value="CallingMethodsInSameClass.java"/>
+</manifest>
+</jar>
+</target>
+<target name="run" depends="package" description="run the package">
+<java jar="build/jars/CallingMethodsInSameClass.jar" fork="true"/>
 </target>
 </project>
